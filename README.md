@@ -1,5 +1,5 @@
 # Pinakes
-Fast Kotlin-based file index to enable quick random access in the filesystem. The index is currently held in RAM, but future versions will also allow disk persistence.
+Fast Kotlin-based file index to enable quick random access `O(1)` to the filesystem. The index is currently held in RAM, but future versions will also allow disk persistence.
 
 ## Usage
 Pinakes allows you to decide on what file attribute to index the files. Here is an example to enable quick access to files by their name:
@@ -31,7 +31,4 @@ Indexing will use a thread pool by default, sized to the number of available pro
 // Set pool size
 val fileIndexer = FileIndexer<String>(File("/path/to/directory"), threads = 1)
 ```
-
-
-
  
