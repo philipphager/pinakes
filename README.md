@@ -4,7 +4,7 @@ Fast Kotlin-based file index to enable quick random access `O(1)` to the filesys
 ## Usage
 Pinakes allows you to decide on what file attribute to index the files. Here is an example to enable quick access to files by their name:
 ```kotlin
-// Build index
+// Build index and define a function used to calculate the index key for each file
 val fileIndexer = FileIndexer<String>(File("/path/to/directory"))
 fileIndexer.index(extractKey = { it.name })
 
@@ -19,7 +19,7 @@ The following example shows how to allow indexing multiple files with the same k
 val fileIndexer = FileIndexer<String>(File("/path/to/directory", CollisionStrategy.ALLOW_DUPLICATES)
 fileIndexer.index(extractKey = { it.name })
 
-// Retrieve all files with the key
+// Retrieve all files with the same key
 val file = fileIndexer.getAll("name")
 
 // In the case of multiple files per key, get will return the first indexed file
