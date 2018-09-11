@@ -28,6 +28,14 @@ val file = fileIndexer.getAll("name")
 val file = fileIndexer.get("name")
 ```
 
+You can also choose which files should be indexed:
+```kotlin
+// Exclude dotfiles from the index
+val rootDir = File("/path/to/directory")
+val fileIndexer = FileIndexer<String>(rootDir, threads = 1)
+fileIndexer.index(shouldIndex = { !it.startsWith(".") }, extractKey = { it.name })
+```
+
 Indexing will use a thread pool by default, sized to the number of available processors. To manually set the pool size:
 ```kotlin
 // Set pool size
